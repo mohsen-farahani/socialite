@@ -14,6 +14,7 @@ use Laravel\Socialite\Two\FacebookProvider;
 use Laravel\Socialite\Two\LinkedInProvider;
 use Laravel\Socialite\Two\BitbucketProvider;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
+use Laravel\Socialite\Two\InstagramProvider;
 
 class SocialiteManager extends Manager implements Contracts\Factory
 {
@@ -53,6 +54,21 @@ class SocialiteManager extends Manager implements Contracts\Factory
 
         return $this->buildProvider(
             FacebookProvider::class, $config
+        );
+    }
+
+    /**
+     * Create an instance of the specified driver.
+     *
+     * @return \Laravel\Socialite\Two\AbstractProvider
+     */
+    protected function createInstagramDriver()
+    {
+        $config = $this->app['config']['services.instagram'];
+
+        return $this->buildProvider(
+            InstagramProvider::class,
+            $config
         );
     }
 
